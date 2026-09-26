@@ -1,0 +1,912 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Midnight Coffee Co. — About</title>
+
+  <!-- Google Fonts: Playfair Display + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <style>
+    /* ---------- RESET & BASE (milky coffee shade) ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #D9C8B2;
+      color: #24150F;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .logo, .hero-title, .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+      border-radius: 16px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ---------- GLASS / GOLD ACCENTS ---------- */
+    .glass {
+      background: rgba(255, 245, 235, 0.3);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(200, 164, 93, 0.25);
+      border-radius: 24px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    }
+
+    .gold-text {
+      color: #C8A45D;
+    }
+
+    .gold-border {
+      border-color: #C8A45D;
+    }
+
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: transparent;
+      border: 1.5px solid #C8A45D;
+      color: #24150F;
+      padding: 0.9rem 2.2rem;
+      border-radius: 60px;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      font-family: 'Inter', sans-serif;
+      backdrop-filter: blur(4px);
+      background: rgba(255, 245, 235, 0.2);
+      box-shadow: 0 0 12px rgba(200, 164, 93, 0.08);
+    }
+
+    .btn-gold i {
+      color: #C8A45D;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-gold:hover {
+      background: #C8A45D;
+      color: #0B0B0B;
+      border-color: #C8A45D;
+      box-shadow: 0 0 30px rgba(200, 164, 93, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .btn-gold:hover i {
+      color: #0B0B0B;
+      transform: translateX(4px);
+    }
+
+    .btn-gold-filled {
+      background: #C8A45D;
+      color: #0B0B0B;
+      border: 1.5px solid #C8A45D;
+      box-shadow: 0 0 25px rgba(200, 164, 93, 0.2);
+    }
+
+    .btn-gold-filled:hover {
+      background: transparent;
+      color: #24150F;
+      border-color: #C8A45D;
+    }
+
+    .btn-gold-filled:hover i {
+      color: #C8A45D;
+    }
+
+    /* ---------- SCROLL REVEAL ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.9s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- NAVBAR (exactly as home) ---------- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+      background: rgba(217, 200, 178, 0.3);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(200, 164, 93, 0.15);
+    }
+
+    .navbar.scrolled {
+      background: rgba(217, 200, 178, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+      border-bottom: 1px solid rgba(200, 164, 93, 0.25);
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #24150F;
+      letter-spacing: 0.04em;
+    }
+
+    .logo i {
+      color: #C8A45D;
+      margin-right: 8px;
+      font-size: 1.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: #3B2418;
+      transition: color 0.3s ease, border-color 0.3s ease;
+      padding: 0.3rem 0;
+      border-bottom: 2px solid transparent;
+      letter-spacing: 0.03em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-links a i {
+      font-size: 0.9rem;
+      color: #C8A45D;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #0B0B0B;
+      border-bottom-color: #C8A45D;
+    }
+
+    .nav-links a:hover i {
+      color: #24150F;
+    }
+
+    .nav-links .active {
+      color: #0B0B0B;
+      border-bottom-color: #C8A45D;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      color: #24150F;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-links-mobile {
+      display: none;
+      flex-direction: column;
+      background: rgba(217, 200, 178, 0.98);
+      backdrop-filter: blur(20px);
+      padding: 2rem;
+      border-radius: 0 0 32px 32px;
+      gap: 1.5rem;
+      border-top: 1px solid rgba(200, 164, 93, 0.2);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links-mobile.open {
+      display: flex;
+    }
+
+    .nav-links-mobile a {
+      color: #3B2418;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(200, 164, 93, 0.1);
+    }
+
+    .nav-links-mobile a i {
+      width: 1.8rem;
+      color: #C8A45D;
+    }
+
+    /* ---------- ABOUT HERO (cinematic split) ---------- */
+    .about-hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 2rem;
+      position: relative;
+      background: radial-gradient(circle at 20% 30%, #E8D5C0, #D9C8B2);
+      overflow: hidden;
+    }
+
+    .about-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .about-hero-text {
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-hero-text .hero-title {
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+      color: #24150F;
+    }
+
+    .about-hero-text .hero-title span {
+      color: #C8A45D;
+      font-style: italic;
+    }
+
+    .about-hero-text .hero-sub {
+      font-size: clamp(1rem, 1.8vw, 1.4rem);
+      color: #3B2418;
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+    }
+
+    .about-hero-text p {
+      color: #3B2418;
+      font-size: 1.05rem;
+      max-width: 500px;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .about-hero-image {
+      border-radius: 32px;
+      overflow: hidden;
+      height: 450px;
+      border: 1px solid rgba(200,164,93,0.2);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+    }
+
+    .about-hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .about-hero-image:hover img {
+      transform: scale(1.03);
+    }
+
+    /* ---------- SECTIONS ---------- */
+    section {
+      padding: 5rem 0;
+      position: relative;
+    }
+
+    .section-heading {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      letter-spacing: 0.02em;
+      color: #24150F;
+    }
+
+    .section-sub {
+      color: #3B2418;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+
+    .section-heading i {
+      color: #C8A45D;
+      margin-right: 10px;
+      font-size: 0.9em;
+    }
+
+    /* philosophy cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .luxury-card {
+      background: rgba(255, 245, 235, 0.5);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(200, 164, 93, 0.2);
+      border-radius: 28px;
+      padding: 2rem 1.5rem;
+      transition: all 0.35s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      text-align: center;
+      color: #24150F;
+    }
+
+    .luxury-card:hover {
+      transform: translateY(-10px) scale(1.01);
+      border-color: rgba(200, 164, 93, 0.5);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.06);
+      background: rgba(255, 245, 235, 0.8);
+    }
+
+    .luxury-card i {
+      font-size: 2.6rem;
+      color: #C8A45D;
+      margin-bottom: 1rem;
+    }
+
+    .luxury-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: #24150F;
+    }
+
+    .luxury-card p {
+      color: #3B2418;
+      font-size: 0.95rem;
+    }
+
+    /* experience full-width */
+    .experience-section {
+      background: radial-gradient(circle at 30% 40%, #E8D5C0, #D9C8B2);
+      padding: 4rem 2rem;
+      border-radius: 48px;
+      margin: 2rem 0;
+      border: 1px solid rgba(200,164,93,0.15);
+      text-align: center;
+      color: #24150F;
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .exp-item {
+      padding: 1.5rem;
+      border-radius: 28px;
+      background: rgba(255,245,235,0.3);
+      border: 1px solid rgba(200,164,93,0.1);
+      transition: 0.3s;
+    }
+
+    .exp-item:hover {
+      border-color: #C8A45D;
+      transform: translateY(-4px);
+    }
+
+    .exp-item i {
+      font-size: 2.4rem;
+      color: #C8A45D;
+      margin-bottom: 0.8rem;
+    }
+
+    .exp-item h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+
+    /* coffee craft steps */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .step-card {
+      background: rgba(255,245,235,0.4);
+      border: 1px solid rgba(200,164,93,0.12);
+      border-radius: 28px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    .step-card:hover {
+      transform: translateY(-6px);
+      border-color: #C8A45D;
+    }
+
+    .step-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #C8A45D;
+      opacity: 0.3;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      color: #24150F;
+    }
+
+    .step-card p {
+      color: #3B2418;
+      font-size: 0.95rem;
+    }
+
+    /* values grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .value-item {
+      background: rgba(255,245,235,0.3);
+      border: 1px solid rgba(200,164,93,0.1);
+      border-radius: 40px;
+      padding: 1.2rem 1rem;
+      text-align: center;
+      font-weight: 500;
+      color: #24150F;
+      transition: 0.3s;
+    }
+
+    .value-item:hover {
+      border-color: #C8A45D;
+      background: rgba(255,245,235,0.6);
+    }
+
+    .value-item i {
+      color: #C8A45D;
+      margin-right: 8px;
+    }
+
+    /* quote section */
+    .quote-section {
+      background: radial-gradient(circle at 30% 40%, #E8D5C0, #D9C8B2);
+      padding: 5rem 2rem;
+      border-radius: 48px;
+      margin: 2rem 0;
+      text-align: center;
+      border: 1px solid rgba(200,164,93,0.1);
+    }
+
+    .quote-section blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 600;
+      font-style: italic;
+      color: #24150F;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .quote-section .attribution {
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      color: #C8A45D;
+      letter-spacing: 0.08em;
+    }
+
+    /* meet experience split */
+    .meet-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .meet-grid .meet-image {
+      border-radius: 32px;
+      overflow: hidden;
+      height: 320px;
+      border: 1px solid rgba(200,164,93,0.15);
+    }
+
+    .meet-grid .meet-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .meet-grid .meet-image:hover img {
+      transform: scale(1.04);
+    }
+
+    .meet-grid ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .meet-grid ul li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #3B2418;
+    }
+
+    .meet-grid ul li i {
+      color: #C8A45D;
+      font-size: 1.1rem;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: radial-gradient(circle at 30% 40%, #E8D5C0, #D9C8B2);
+      padding: 4rem 2rem;
+      border-radius: 48px;
+      margin: 2rem 0;
+      border: 1px solid rgba(200,164,93,0.15);
+      text-align: center;
+      color: #24150F;
+    }
+
+    /* footer (exactly as home) */
+    .footer {
+      background: #D9C8B2;
+      padding: 4rem 0 1.5rem;
+      border-top: 1px solid rgba(200,164,93,0.2);
+      margin-top: 3rem;
+      color: #24150F;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .footer h4 {
+      font-family: 'Playfair Display', serif;
+      color: #24150F;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .footer a, .footer p {
+      color: #3B2418;
+      font-size: 0.95rem;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s;
+    }
+
+    .footer a:hover {
+      color: #C8A45D;
+    }
+
+    .footer .social i {
+      font-size: 1.4rem;
+      margin-right: 1rem;
+      color: #3B2418;
+      transition: 0.3s;
+    }
+
+    .footer .social i:hover {
+      color: #C8A45D;
+    }
+
+    .footer .newsletter input {
+      background: rgba(255,255,255,0.3);
+      border: 1px solid rgba(200,164,93,0.2);
+      padding: 0.8rem 1rem;
+      border-radius: 60px;
+      width: 100%;
+      color: #24150F;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer .newsletter input::placeholder {
+      color: #7a6a5a;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(200,164,93,0.1);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      font-size: 0.85rem;
+      color: #3B2418;
+    }
+
+    .footer-bottom a {
+      color: #3B2418;
+      display: inline-block;
+      margin-left: 1.5rem;
+    }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .about-hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .about-hero-text p {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .about-hero-image {
+        height: 250px;
+      }
+      .meet-grid {
+        grid-template-columns: 1fr;
+      }
+      .meet-grid ul {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title { font-size: 2.4rem; }
+      .container { padding: 0 1.2rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .about-hero-image { height: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVBAR (exact copy from home) ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="logo">
+      <i class="fas fa-mug-saucer"></i> The Midnight Coffee Co.
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="about.html" class="active"><i class="fas fa-leaf"></i> About</a></li>
+      <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+      <li><a href="coffee-latte.html"><i class="fas fa-mug-hot"></i> Coffee & Latte</a></li>
+      <li><a href="matcha.html"><i class="fas fa-seedling"></i> Matcha</a></li>
+      <li><a href="contact.html"><i class="fas fa-phone"></i> Contact</a></li>
+      <li><a href="cart.html"><i class="fas fa-bag-shopping"></i> Cart</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="nav-links-mobile" id="mobileMenu">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="about.html" class="active"><i class="fas fa-leaf"></i> About</a>
+      <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+      <a href="coffee-latte.html"><i class="fas fa-mug-hot"></i> Coffee & Latte</a>
+      <a href="matcha.html"><i class="fas fa-seedling"></i> Matcha</a>
+      <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+      <a href="cart.html"><i class="fas fa-bag-shopping"></i> Cart</a>
+    </div>
+  </nav>
+
+  <!-- ========== ABOUT HERO ========== -->
+  <section class="about-hero" id="about-hero">
+    <div class="about-hero-grid">
+      <div class="about-hero-text reveal">
+        <h1 class="hero-title">The Story Behind <br /><span>The Midnight Coffee Co.</span></h1>
+        <p class="hero-sub">Where handcrafted coffee, intimate moments, and the beauty of the night come together.</p>
+        <p>Nestled in the heart of the city, The Midnight Coffee Co. was born from a love for slow evenings, rich aromas, and the quiet magic that only happens after dark.</p>
+        <a href="coffee-latte.html" class="btn-gold btn-gold-filled"><i class="fas fa-mug-saucer"></i> Explore Our Coffee</a>
+      </div>
+      <div class="about-hero-image reveal">
+        <img src="./img9.png" alt="Midnight Coffee Co. interior" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT OUR MIDNIGHT COFFEE ========== -->
+  <section class="container reveal">
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2.5rem; align-items:center;">
+      <div>
+        <span style="color:#C8A45D; font-weight:500; letter-spacing:0.1em;">EST. 2026</span>
+        <h2 class="section-heading" style="margin-top:0.5rem;"><i class="fas fa-mug-saucer"></i> About Our Midnight Coffee</h2>
+        <p style="color:#3B2418; font-size:1.1rem; margin-bottom:1.5rem;">At The Midnight Coffee Co., we believe the best moments often happen after dark. A quiet table, the aroma of freshly brewed coffee, a meaningful conversation, or simply a moment to yourself — these are the moments that inspired us.</p>
+        <p style="color:#3B2418; opacity:0.8;">We craft every cup with the same intention: to turn ordinary evenings into something unforgettable. From the first sip to the last drop, we invite you to slow down and savor the night.</p>
+      </div>
+      <div style="border-radius:40px; overflow:hidden; height:300px; border:1px solid rgba(200,164,93,0.15);">
+        <img src="./img12.png" alt="coffee preparation" style="width:100%; height:100%; object-fit:cover;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== OUR PHILOSOPHY ========== -->
+  <section class="container reveal">
+    <h2 class="section-heading"><i class="fas fa-gem"></i> Our Philosophy</h2>
+    <div class="card-grid">
+      <div class="luxury-card"><i class="fas fa-hand-sparkles"></i><h3>Crafted With Intention</h3><p>Every cup is carefully prepared with attention to detail.</p></div>
+      <div class="luxury-card"><i class="fas fa-seedling"></i><h3>Quality First</h3><p>We select quality coffee beans and premium ingredients.</p></div>
+      <div class="luxury-card"><i class="fas fa-clock"></i><h3>Slow Moments</h3><p>We believe coffee should be enjoyed, not rushed.</p></div>
+      <div class="luxury-card"><i class="fas fa-heart"></i><h3>Made For Connection</h3><p>Our café is a place for conversations, memories, and meaningful moments.</p></div>
+    </div>
+  </section>
+
+  <!-- ========== THE MIDNIGHT EXPERIENCE ========== -->
+  <section class="container reveal">
+    <div class="experience-section">
+      <h2 class="section-heading"><i class="fas fa-moon"></i> More Than Coffee. It's an Experience.</h2>
+      <div class="experience-grid">
+        <div class="exp-item"><i class="fas fa-mug-hot"></i><h4>Handcrafted Drinks</h4></div>
+        <div class="exp-item"><i class="fas fa-cloud-moon"></i><h4>Midnight Atmosphere</h4></div>
+        <div class="exp-item"><i class="fas fa-star"></i><h4>Premium Experience</h4></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== COFFEE CRAFT ========== -->
+  <section class="container reveal">
+    <h2 class="section-heading"><i class="fas fa-fire"></i> From Bean to Midnight.</h2>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-number">01</div><h4>Carefully Selected</h4><p>Premium coffee beans are selected for quality and flavor.</p></div>
+      <div class="step-card"><div class="step-number">02</div><h4>Expertly Roasted</h4><p>Beans are roasted to bring out their unique character.</p></div>
+      <div class="step-card"><div class="step-number">03</div><h4>Freshly Crafted</h4><p>Our baristas carefully prepare every drink.</p></div>
+      <div class="step-card"><div class="step-number">04</div><h4>Beautifully Served</h4><p>Every cup is served as part of the Midnight Coffee experience.</p></div>
+    </div>
+  </section>
+
+  <!-- ========== SIGNATURE VALUES ========== -->
+  <section class="container reveal">
+    <h2 class="section-heading"><i class="fas fa-check-circle"></i> What We Believe In</h2>
+    <div class="values-grid">
+      <div class="value-item"><i class="fas fa-award"></i> Quality</div>
+      <div class="value-item"><i class="fas fa-feather"></i> Authenticity</div>
+      <div class="value-item"><i class="fas fa-hands"></i> Hospitality</div>
+      <div class="value-item"><i class="fas fa-lightbulb"></i> Creativity</div>
+      <div class="value-item"><i class="fas fa-link"></i> Connection</div>
+    </div>
+  </section>
+
+  <!-- ========== CINEMATIC QUOTE ========== -->
+  <section class="container reveal">
+    <div class="quote-section">
+      <blockquote>“Some nights are remembered by the conversations. Others are remembered by the coffee.”</blockquote>
+      <div class="attribution">— The Midnight Coffee Co.</div>
+    </div>
+  </section>
+
+  <!-- ========== MEET THE EXPERIENCE ========== -->
+  <section class="container reveal">
+    <div class="meet-grid">
+      <div class="meet-image">
+        <img src="./img15.png" alt="café interior" />
+      </div>
+      <div>
+        <h2 class="section-heading" style="margin-bottom:0.5rem;"><i class="fas fa-couch"></i> Designed For Your Midnight Moments.</h2>
+        <p style="color:#3B2418; margin-bottom:1rem;">Our space is crafted for every kind of evening — whether you're catching up with friends, working late, or simply enjoying a quiet cup alone.</p>
+        <ul>
+          <li><i class="fas fa-comments"></i> Late-night conversations</li>
+          <li><i class="fas fa-moon"></i> Quiet evenings</li>
+          <li><i class="fas fa-laptop"></i> Creative work</li>
+          <li><i class="fas fa-heart"></i> Date nights</li>
+          <li><i class="fas fa-users"></i> Catching up with friends</li>
+          <li><i class="fas fa-coffee"></i> Enjoying coffee alone</li>
+        </ul>
+        <a href="gallery.html" class="btn-gold" style="margin-top:1.5rem; display:inline-flex;"><i class="fas fa-images"></i> Visit Our Gallery</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT CTA ========== -->
+  <section class="container reveal">
+    <div class="cta-section">
+      <h2 style="font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3rem);">Ready to Make It a Midnight Moment?</h2>
+      <p style="color:#3B2418; font-size:1.2rem; margin:1rem 0 2rem;">Discover handcrafted coffee, beautiful surroundings, and an experience worth staying for.</p>
+      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;">
+        <a href="coffee-latte.html" class="btn-gold btn-gold-filled"><i class="fas fa-mug-saucer"></i> Explore Menu</a>
+        <a href="contact.html" class="btn-gold"><i class="fas fa-calendar-check"></i> Reserve a Table</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER (exact copy from home) ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h4><i class="fas fa-mug-saucer" style="color:#C8A45D;"></i> The Midnight Coffee Co.</h4><p style="color:#3B2418;">Luxury coffee for midnight stories and slow conversations.</p></div>
+        <div><h4>Quick Links</h4><a href="index.html">Home</a><a href="about.html">About</a><a href="gallery.html">Gallery</a><a href="coffee-latte.html">Coffee & Latte</a><a href="matcha.html">Matcha</a><a href="contact.html">Contact</a></div>
+        <div><h4>Customer</h4><a href="cart.html">Cart</a><a href="#">Order Information</a><a href="contact.html">Reservations</a></div>
+        <div><h4>Contact</h4><p><i class="fas fa-map-pin" style="color:#C8A45D;"></i> 42 Midnight Ave, NY</p><p><i class="fas fa-phone" style="color:#C8A45D;"></i> +1 (555) 000-9999</p><p><i class="fas fa-envelope" style="color:#C8A45D;"></i> hello@midnightcoffee.com</p><p><i class="fas fa-clock" style="color:#C8A45D;"></i> 6pm – 2am</p></div>
+        <div><h4>Join the Midnight List</h4><div class="newsletter"><input type="email" placeholder="Your email" /><a href="#" class="btn-gold" style="display:inline-block; padding:0.6rem 1.8rem;">Subscribe</a></div><div class="social" style="margin-top:1.2rem;"><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i><i class="fab fa-facebook"></i><i class="fab fa-youtube"></i></div></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 The Midnight Coffee Co. All Rights Reserved.</span><span><a href="#">Privacy Policy</a><a href="#">Terms & Conditions</a></span></div>
+    </div>
+  </footer>
+
+  <!-- ========== JS ========== -->
+  <script>
+    // navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    // mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+
+    // scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.2 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

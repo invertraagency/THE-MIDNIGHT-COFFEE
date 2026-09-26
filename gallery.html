@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Midnight Coffee Co. — Gallery</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ---------- RESET & BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #D9C8B2;
+            color: #24150F;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .logo,
+        .hero-title,
+        .section-heading {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ---------- GLASS / GOLD ACCENTS ---------- */
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: transparent;
+            border: 1.5px solid #C8A45D;
+            color: #24150F;
+            padding: 0.9rem 2.2rem;
+            border-radius: 60px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            letter-spacing: 0.03em;
+            font-family: 'Inter', sans-serif;
+            backdrop-filter: blur(4px);
+            background: rgba(255, 245, 235, 0.2);
+            box-shadow: 0 0 12px rgba(200, 164, 93, 0.08);
+        }
+
+        .btn-gold i {
+            color: #C8A45D;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            background: #C8A45D;
+            color: #0B0B0B;
+            border-color: #C8A45D;
+            box-shadow: 0 0 30px rgba(200, 164, 93, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-gold:hover i {
+            color: #0B0B0B;
+            transform: translateX(4px);
+        }
+
+        .btn-gold-filled {
+            background: #C8A45D;
+            color: #0B0B0B;
+            border: 1.5px solid #C8A45D;
+            box-shadow: 0 0 25px rgba(200, 164, 93, 0.2);
+        }
+
+        .btn-gold-filled:hover {
+            background: transparent;
+            color: #24150F;
+            border-color: #C8A45D;
+        }
+
+        .btn-gold-filled:hover i {
+            color: #C8A45D;
+        }
+
+        /* ---------- SCROLL REVEAL ---------- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.2, 0.9, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---------- NAVBAR ---------- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: background 0.4s ease, box-shadow 0.4s ease;
+            background: rgba(217, 200, 178, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(200, 164, 93, 0.15);
+        }
+
+        .navbar.scrolled {
+            background: rgba(217, 200, 178, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(200, 164, 93, 0.25);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #24150F;
+            letter-spacing: 0.04em;
+        }
+
+        .logo i {
+            color: #C8A45D;
+            margin-right: 8px;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: #3B2418;
+            transition: color 0.3s ease, border-color 0.3s ease;
+            padding: 0.3rem 0;
+            border-bottom: 2px solid transparent;
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-links a i {
+            font-size: 0.9rem;
+            color: #C8A45D;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #0B0B0B;
+            border-bottom-color: #C8A45D;
+        }
+
+        .nav-links a:hover i {
+            color: #24150F;
+        }
+
+        .nav-links .active {
+            color: #0B0B0B;
+            border-bottom-color: #C8A45D;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            color: #24150F;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-links-mobile {
+            display: none;
+            flex-direction: column;
+            background: rgba(217, 200, 178, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 0 0 32px 32px;
+            gap: 1.5rem;
+            border-top: 1px solid rgba(200, 164, 93, 0.2);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links-mobile.open {
+            display: flex;
+        }
+
+        .nav-links-mobile a {
+            color: #3B2418;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(200, 164, 93, 0.1);
+        }
+
+        .nav-links-mobile a i {
+            width: 1.8rem;
+            color: #C8A45D;
+        }
+
+        .cart-badge {
+            background: #C8A45D;
+            color: #0B0B0B;
+            border-radius: 50%;
+            padding: 0.1rem 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-left: 4px;
+            display: inline-block;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        /* ---------- HERO WITH BACKGROUND IMAGE ---------- */
+        .gallery-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+            background-image: url('./img11.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        .gallery-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 11, 11, 0.5);
+            z-index: 1;
+        }
+
+        .gallery-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 820px;
+        }
+
+        .gallery-hero-content .label {
+            color: #C8A45D;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .gallery-hero-content .hero-title {
+            font-size: clamp(2.8rem, 8vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin: 0.8rem 0 1.2rem;
+            color: #F5E6D3;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .gallery-hero-content .hero-title span {
+            color: #C8A45D;
+            font-style: italic;
+        }
+
+        .gallery-hero-content p {
+            color: #D8C39A;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+        }
+
+        .gallery-hero-content .hero-btn {
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.2s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Slow zoom animation for hero background */
+        .gallery-hero {
+            animation: heroZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroZoom {
+            0% {
+                background-size: 100%;
+            }
+            100% {
+                background-size: 110%;
+            }
+        }
+
+        /* ---------- FILTER BAR ---------- */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+            margin: 2rem 0 3rem;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 245, 235, 0.3);
+            border-radius: 60px;
+            border: 1px solid rgba(200, 164, 93, 0.12);
+            backdrop-filter: blur(4px);
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            border: 1px solid rgba(200, 164, 93, 0.15);
+            background: transparent;
+            color: #3B2418;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .filter-btn:hover {
+            border-color: #C8A45D;
+            background: rgba(200, 164, 93, 0.05);
+        }
+
+        .filter-btn.active {
+            background: #C8A45D;
+            color: #0B0B0B;
+            border-color: #C8A45D;
+        }
+
+        /* ---------- MASONRY GALLERY ---------- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 250px;
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid rgba(200, 164, 93, 0.08);
+            transition: all 0.4s ease;
+            background: #D9C8B2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .gallery-item:hover {
+            border-color: #C8A45D;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Different sizes for masonry feel */
+        .gallery-item.feature-large {
+            grid-row: span 2;
+            grid-column: span 2;
+        }
+
+        .gallery-item.feature-wide {
+            grid-column: span 2;
+        }
+
+        .gallery-item.feature-tall {
+            grid-row: span 2;
+        }
+
+        /* Overlay on hover */
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 1.5rem;
+            background: linear-gradient(to top, rgba(11, 11, 11, 0.8) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .gallery-item .overlay h4 {
+            font-family: 'Playfair Display', serif;
+            color: #F5E6D3;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .gallery-item .overlay span {
+            color: #C8A45D;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .gallery-item .overlay i {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: #C8A45D;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover .overlay i {
+            opacity: 1;
+        }
+
+        /* Hide filtered items */
+        .gallery-item.hidden {
+            display: none;
+        }
+
+        /* ---------- EDITORIAL SECTION ---------- */
+        .editorial-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            margin: 4rem 0;
+            padding: 3rem;
+            background: rgba(255, 245, 235, 0.3);
+            border-radius: 32px;
+            border: 1px solid rgba(200, 164, 93, 0.12);
+            backdrop-filter: blur(4px);
+        }
+
+        .editorial-section .editorial-image {
+            border-radius: 24px;
+            overflow: hidden;
+            height: 320px;
+            border: 1px solid rgba(200, 164, 93, 0.08);
+        }
+
+        .editorial-section .editorial-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .editorial-section .editorial-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .editorial-section h2 {
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            margin-bottom: 1rem;
+        }
+
+        .editorial-section p {
+            color: #3B2418;
+            font-size: 1.05rem;
+        }
+
+        /* ---------- CINEMATIC FULL-WIDTH SECTION ---------- */
+        .cinematic-section {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            background-image: url('https://images.unsplash.com/photo-1517701604599-bb29b880090f?w=1600&h=900&fit=crop&crop=center');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            border-radius: 48px;
+            margin: 3rem 0;
+            overflow: hidden;
+        }
+
+        .cinematic-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 11, 11, 0.55);
+            z-index: 1;
+            border-radius: 48px;
+        }
+
+        .cinematic-section .cinematic-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cinematic-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: #F5E6D3;
+            font-weight: 600;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .cinematic-section p {
+            color: #D8C39A;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        /* ---------- MIDNIGHT MOMENTS ---------- */
+        .moments-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+
+        .moments-grid .moment-item {
+            border-radius: 20px;
+            overflow: hidden;
+            height: 200px;
+            border: 1px solid rgba(200, 164, 93, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        .moments-grid .moment-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .moments-grid .moment-item:hover {
+            border-color: #C8A45D;
+            transform: translateY(-4px);
+        }
+
+        .moments-grid .moment-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* ---------- CTA ---------- */
+        .cta-section {
+            background: radial-gradient(circle at 30% 40%, #E8D5C0, #D9C8B2);
+            padding: 4rem 2rem;
+            border-radius: 48px;
+            margin: 2rem 0;
+            border: 1px solid rgba(200, 164, 93, 0.15);
+            text-align: center;
+        }
+
+        /* ---------- LIGHTBOX ---------- */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(20px);
+            z-index: 5000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            color: #F5E6D3;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .lightbox .lightbox-close:hover {
+            color: #C8A45D;
+            transform: rotate(90deg);
+        }
+
+        .lightbox .lightbox-content {
+            max-width: 80%;
+            max-height: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .lightbox .lightbox-content img {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            object-fit: contain;
+        }
+
+        .lightbox .lightbox-info {
+            color: #F5E6D3;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .lightbox .lightbox-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #F5E6D3;
+        }
+
+        .lightbox .lightbox-info span {
+            color: #C8A45D;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .lightbox .lightbox-counter {
+            position: absolute;
+            bottom: -3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #7a6a5a;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        .lightbox .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #F5E6D3;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox .lightbox-nav:hover {
+            background: rgba(200, 164, 93, 0.2);
+            border-color: #C8A45D;
+        }
+
+        .lightbox .lightbox-nav.prev {
+            left: 2rem;
+        }
+        .lightbox .lightbox-nav.next {
+            right: 2rem;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            background: #D9C8B2;
+            padding: 4rem 0 1.5rem;
+            border-top: 1px solid rgba(200, 164, 93, 0.2);
+            margin-top: 3rem;
+            color: #24150F;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .footer h4 {
+            font-family: 'Playfair Display', serif;
+            color: #24150F;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer a,
+        .footer p {
+            color: #3B2418;
+            font-size: 0.95rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: #C8A45D;
+        }
+
+        .footer .social i {
+            font-size: 1.4rem;
+            margin-right: 1rem;
+            color: #3B2418;
+            transition: 0.3s;
+        }
+
+        .footer .social i:hover {
+            color: #C8A45D;
+        }
+
+        .footer .newsletter input {
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(200, 164, 93, 0.2);
+            padding: 0.8rem 1rem;
+            border-radius: 60px;
+            width: 100%;
+            color: #24150F;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer .newsletter input::placeholder {
+            color: #7a6a5a;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(200, 164, 93, 0.1);
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            font-size: 0.85rem;
+            color: #3B2418;
+        }
+
+        .footer-bottom a {
+            color: #3B2418;
+            display: inline-block;
+            margin-left: 1.5rem;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                grid-auto-rows: 200px;
+            }
+            .gallery-item.feature-large {
+                grid-row: span 2;
+                grid-column: span 2;
+            }
+            .gallery-item.feature-wide {
+                grid-column: span 2;
+            }
+            .gallery-item.feature-tall {
+                grid-row: span 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 180px;
+            }
+            .gallery-item.feature-large {
+                grid-row: span 1;
+                grid-column: span 1;
+            }
+            .gallery-item.feature-wide {
+                grid-column: span 1;
+            }
+            .gallery-item.feature-tall {
+                grid-row: span 1;
+            }
+            .editorial-section {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+            .editorial-section .editorial-image {
+                height: 200px;
+            }
+            .moments-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .lightbox .lightbox-content {
+                max-width: 95%;
+            }
+            .lightbox .lightbox-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            .lightbox .lightbox-nav.prev {
+                left: 0.5rem;
+            }
+            .lightbox .lightbox-nav.next {
+                right: 0.5rem;
+            }
+            .filter-bar {
+                border-radius: 28px;
+                padding: 0.8rem 1rem;
+                gap: 0.5rem;
+            }
+            .filter-btn {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: 140px;
+                gap: 0.8rem;
+            }
+            .gallery-hero-content .hero-title {
+                font-size: 2.2rem;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .moments-grid {
+                grid-template-columns: 1fr;
+            }
+            .cinematic-section {
+                min-height: 40vh;
+                border-radius: 24px;
+            }
+            .cinematic-section h2 {
+                font-size: 1.8rem;
+            }
+            .lightbox .lightbox-nav {
+                width: 35px;
+                height: 35px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="logo">
+            <i class="fas fa-mug-saucer"></i> The Midnight Coffee Co.
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-leaf"></i> About</a></li>
+            <li><a href="gallery.html" class="active"><i class="fas fa-images"></i> Gallery</a></li>
+            <li><a href="coffee-latte.html"><i class="fas fa-mug-hot"></i> Coffee & Latte</a></li>
+            <li><a href="matcha.html"><i class="fas fa-seedling"></i> Matcha</a></li>
+            <li><a href="contact.html"><i class="fas fa-phone"></i> Contact</a></li>
+            <li><a href="cart.html"><i class="fas fa-bag-shopping"></i> Cart <span class="cart-badge" id="cartBadge">0</span></a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links-mobile" id="mobileMenu">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="about.html"><i class="fas fa-leaf"></i> About</a>
+            <a href="gallery.html" class="active"><i class="fas fa-images"></i> Gallery</a>
+            <a href="coffee-latte.html"><i class="fas fa-mug-hot"></i> Coffee & Latte</a>
+            <a href="matcha.html"><i class="fas fa-seedling"></i> Matcha</a>
+            <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+            <a href="cart.html"><i class="fas fa-bag-shopping"></i> Cart <span class="cart-badge" id="cartBadgeMobile">0</span></a>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="gallery-hero" id="gallery-hero">
+        <div class="gallery-hero-content">
+            <div class="label">The Midnight Gallery</div>
+            <h1 class="hero-title">Moments Worth <br /><span>Remembering.</span></h1>
+            <p>Step inside The Midnight Coffee Co. and discover the atmosphere, craft, and quiet moments behind every cup.</p>
+            <div class="hero-btn">
+                <a href="#gallery-section" class="btn-gold btn-gold-filled"><i class="fas fa-images"></i> Explore The Gallery</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== GALLERY SECTION ========== -->
+    <section class="container" id="gallery-section">
+        <!-- Filter Bar -->
+        <div class="filter-bar" id="filterBar">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="cafe">Café</button>
+            <button class="filter-btn" data-filter="coffee">Coffee</button>
+            <button class="filter-btn" data-filter="latte">Latte</button>
+            <button class="filter-btn" data-filter="matcha">Matcha</button>
+            <button class="filter-btn" data-filter="atmosphere">Atmosphere</button>
+            <button class="filter-btn" data-filter="moments">Moments</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <!-- ========== EDITORIAL SECTION ========== -->
+    <section class="container reveal">
+        <div class="editorial-section">
+            <div class="editorial-image">
+                <img src="./imgameri.png" alt="Café interior" />
+            </div>
+            <div>
+                <h2><i class="fas fa-book-open" style="color:#C8A45D; margin-right:10px;"></i> Every Corner Has A Story.</h2>
+                <p>From the first pour of espresso to the quiet glow of the café after sunset, every corner of The Midnight Coffee Co. is designed to create moments worth remembering. Each photograph captures the warmth, elegance, and romance of the midnight hour.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CINEMATIC FULL-WIDTH SECTION ========== -->
+    <section class="container reveal">
+        <div class="cinematic-section">
+            <div class="cinematic-content">
+                <h2>Where Every Night Tastes Better.</h2>
+                <p>Experience the art of coffee after dark.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MIDNIGHT MOMENTS ========== -->
+    <section class="container reveal">
+        <h2 class="section-heading" style="text-align:center; margin-bottom:1.5rem;"><i class="fas fa-heart" style="color:#C8A45D;"></i> Midnight Moments</h2>
+        <div class="moments-grid" id="momentsGrid">
+            <!-- Populated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- ========== CTA ========== -->
+    <section class="container reveal">
+        <div class="cta-section">
+            <h2 style="font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3rem);">Come Experience It Yourself.</h2>
+            <p style="color:#3B2418; font-size:1.2rem; margin:1rem 0 2rem;">The best moments are even better in person.</p>
+            <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;">
+                <a href="coffee-latte.html" class="btn-gold btn-gold-filled"><i class="fas fa-mug-saucer"></i> Explore Our Coffee</a>
+                <a href="contact.html" class="btn-gold"><i class="fas fa-phone"></i> Visit Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div><h4><i class="fas fa-mug-saucer" style="color:#C8A45D;"></i> The Midnight Coffee Co.</h4><p style="color:#3B2418;">Luxury coffee for midnight stories and slow conversations.</p></div>
+                <div><h4>Quick Links</h4><a href="index.html">Home</a><a href="about.html">About</a><a href="gallery.html">Gallery</a><a href="coffee-latte.html">Coffee & Latte</a><a href="matcha.html">Matcha</a><a href="contact.html">Contact</a></div>
+                <div><h4>Customer</h4><a href="cart.html">Cart</a><a href="#">Order Information</a><a href="contact.html">Reservations</a></div>
+                <div><h4>Contact</h4><p><i class="fas fa-map-pin" style="color:#C8A45D;"></i> 42 Midnight Ave, NY</p><p><i class="fas fa-phone" style="color:#C8A45D;"></i> +1 (555) 000-9999</p><p><i class="fas fa-envelope" style="color:#C8A45D;"></i> hello@midnightcoffee.com</p><p><i class="fas fa-clock" style="color:#C8A45D;"></i> 6pm – 2am</p></div>
+                <div><h4>Join the Midnight List</h4><div class="newsletter"><input type="email" placeholder="Your email" /><a href="#" class="btn-gold" style="display:inline-block; padding:0.6rem 1.8rem;">Subscribe</a></div><div class="social" style="margin-top:1.2rem;"><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i><i class="fab fa-facebook"></i><i class="fab fa-youtube"></i></div></div>
+            </div>
+            <div class="footer-bottom"><span>© 2026 The Midnight Coffee Co. All Rights Reserved.</span><span><a href="#">Privacy Policy</a><a href="#">Terms & Conditions</a></span></div>
+        </div>
+    </footer>
+
+    <!-- ========== LIGHTBOX ========== -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">&times;</button>
+        <button class="lightbox-nav prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox-nav next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="Gallery image" />
+            <div class="lightbox-info">
+                <h4 id="lightboxTitle">Title</h4>
+                <span id="lightboxCategory">Category</span>
+            </div>
+            <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
+        </div>
+    </div>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // ---------- GALLERY DATA ----------
+        const galleryImages = [
+            { id: 1, title: 'Midnight Espresso', category: 'coffee',
+                img: './img1.jpg' },
+            { id: 2, title: 'Velvet Latte Art', category: 'latte',
+                img: './img.png' },
+            { id: 3, title: 'Café Interior', category: 'cafe',
+                img: './img9.png' },
+            { id: 4, title: 'Ceremonial Matcha', category: 'matcha',
+                img: './img2.png' },
+            { id: 5, title: 'Coffee Beans', category: 'coffee',
+                img: './img14.png' },
+            { id: 6, title: 'Barista at Work', category: 'moments',
+                img: './img10.png' },
+            { id: 7, title: 'Romantic Café Lighting', category: 'atmosphere',
+                img: './img12.png' },
+            { id: 8, title: 'Caramel Macchiato', category: 'latte',
+                img: './img13.png' },
+            { id: 9, title: 'Midnight Atmosphere', category: 'atmosphere',
+                img: './img3.png' },
+            { id: 10, title: 'Matcha Preparation', category: 'matcha',
+                img: './img15.png' },
+            { id: 11, title: 'Coffee & Pastry', category: 'moments',
+                img: './img11.png' },
+            { id: 12, title: 'Espresso Pour', category: 'coffee',
+                img: './img7.png' },
+            { id: 13, title: 'Café Table', category: 'cafe',
+                img: './img8.png' },
+            { id: 14, title: 'Iced Matcha', category: 'matcha',
+                img: './img17.png' },
+            { id: 15, title: 'Friends at Midnight', category: 'moments',
+                img: './imgf.png' },
+            { id: 16, title: 'Soft Candlelight', category: 'atmosphere',
+                img: './img4.png' },
+        ];
+
+        // ---------- MOMENTS DATA ----------
+        const moments = [
+            { img: './imgrose.png' },
+            { img: './img14.png' },
+            { img: './img16.png' },
+            { img: './img18.png' },
+            { img: './imgb.png' },
+            { img: './imgc.png' },
+        ];
+
+        // ---------- RENDER GALLERY ----------
+        function renderGallery(filter = 'all') {
+            const grid = document.getElementById('galleryGrid');
+            const filtered = filter === 'all' ? galleryImages : galleryImages.filter(img => img.category === filter);
+
+            // Apply masonry classes based on index for variety
+            grid.innerHTML = filtered.map((img, index) => {
+                let className = 'gallery-item';
+                // Create masonry effect with different sizes
+                if (index === 0) className += ' feature-large';
+                else if (index === 3) className += ' feature-wide';
+                else if (index === 5) className += ' feature-tall';
+                else if (index === 8) className += ' feature-wide';
+                else if (index === 10) className += ' feature-tall';
+
+                return `
+              <div class="${className}" data-id="${img.id}" data-category="${img.category}" onclick="openLightbox(${img.id})">
+                <img src="${img.img}" alt="${img.title}" loading="lazy" />
+                <div class="overlay">
+                  <h4>${img.title}</h4>
+                  <span>${img.category.toUpperCase()}</span>
+                  <i class="fas fa-expand"></i>
+                </div>
+              </div>
+            `;
+            }).join('');
+        }
+
+        // ---------- RENDER MOMENTS ----------
+        function renderMoments() {
+            const grid = document.getElementById('momentsGrid');
+            grid.innerHTML = moments.map(m => `
+            <div class="moment-item">
+              <img src="${m.img}" alt="Midnight moment" loading="lazy" />
+            </div>
+          `).join('');
+        }
+
+        // ---------- FILTER ----------
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                renderGallery(filter);
+            });
+        });
+
+        // ---------- LIGHTBOX ----------
+        let currentIndex = 0;
+        let lightboxImages = [];
+
+        function openLightbox(id) {
+            const allItems = document.querySelectorAll('.gallery-item:not(.hidden)');
+            lightboxImages = [];
+            allItems.forEach(item => {
+                const imgId = parseInt(item.dataset.id);
+                const imgData = galleryImages.find(g => g.id === imgId);
+                if (imgData) lightboxImages.push(imgData);
+            });
+
+            currentIndex = lightboxImages.findIndex(img => img.id === id);
+            if (currentIndex === -1) currentIndex = 0;
+
+            updateLightbox();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function updateLightbox() {
+            const img = lightboxImages[currentIndex];
+            if (!img) return;
+            document.getElementById('lightboxImg').src = img.img;
+            document.getElementById('lightboxTitle').textContent = img.title;
+            document.getElementById('lightboxCategory').textContent = img.category.toUpperCase();
+            document.getElementById('lightboxCounter').textContent = `${currentIndex + 1} / ${lightboxImages.length}`;
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function prevImage() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateLightbox();
+            }
+        }
+
+        function nextImage() {
+            if (currentIndex < lightboxImages.length - 1) {
+                currentIndex++;
+                updateLightbox();
+            }
+        }
+
+        // Lightbox event listeners
+        document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+        document.getElementById('lightboxPrev').addEventListener('click', prevImage);
+        document.getElementById('lightboxNext').addEventListener('click', nextImage);
+
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') prevImage();
+                if (e.key === 'ArrowRight') nextImage();
+            }
+        });
+
+        // Close lightbox on click outside image
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('lightbox')) closeLightbox();
+        });
+
+        // ---------- CART BADGE ----------
+        function getCart() {
+            try {
+                return JSON.parse(localStorage.getItem('midnightCart')) || [];
+            } catch { return []; }
+        }
+
+        function updateCartBadge() {
+            const cart = getCart();
+            const total = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.querySelectorAll('.cart-badge').forEach(el => el.textContent = total);
+        }
+
+        // ---------- NAVBAR SCROLL ----------
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+
+        // ---------- MOBILE MENU ----------
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+
+        // ---------- SCROLL REVEAL ----------
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.2 });
+        reveals.forEach(el => observer.observe(el));
+
+        // ---------- INIT ----------
+        renderGallery('all');
+        renderMoments();
+        updateCartBadge();
+    </script>
+</body>
+</html>
